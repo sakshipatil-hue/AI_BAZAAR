@@ -1,0 +1,396 @@
+// scripts/main.js - Core functionality
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Initialize all components
+    initMobileMenu();
+    initScrollAnimations();
+    initCounterAnimations();
+    initVoiceDemo();
+    initSampleCommands();
+    initBeforeAfterEffects();
+    initAOS();
+});
+
+// Mobile Menu Toggle
+function initMobileMenu() {
+    const menuBtn = document.querySelector('.mobile-menu-btn');
+    const navMenu = document.querySelector('.nav-menu');
+    
+    if (menuBtn && navMenu) {
+        menuBtn.addEventListener('click', function() {
+            navMenu.classList.toggle('active');
+            menuBtn.innerHTML = navMenu.classList.contains('active') 
+                ? '<i class="fas fa-times"></i>' 
+                : '<i class="fas fa-bars"></i>';
+        });
+        
+        // Close menu when clicking outside
+        document.addEventListener('click', function(event) {
+            if (!navMenu.contains(event.target) && !menuBtn.contains(event.target)) {
+                navMenu.classList.remove('active');
+                menuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+            }
+        });
+    }
+}
+
+// Scroll Animations
+function initScrollAnimations() {
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+    
+    const observer = new IntersectionObserver(function(entries) {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('animated');
+            }
+        });
+    }, observerOptions);
+    
+    // Observe elements for animation
+    document.querySelectorAll('[data-aos]').forEach(el => {
+        observer.observe(el);
+    });
+}
+
+// Counter Animations
+function initCounterAnimations() {
+    const counters = document.querySelectorAll('.stat-number, .metric-number');
+    
+    const observer = new IntersectionObserver(function(entries) {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const counter = entry.target;
+                const target = parseInt(counter.getAttribute('data-target'));
+                const duration = 2000; // 2 seconds
+                const increment = target / (duration / 16); // 60fps
+                let current = 0;
+                
+                const updateCounter = () => {
+                    current += increment;
+                    if (current < target) {
+                        counter.textContent = Math.floor(current);
+                        requestAnimationFrame(updateCounter);
+                    } else {
+                        counter.textContent = target;
+                    }
+                };
+                
+                updateCounter();
+                observer.unobserve(counter);
+            }
+        });
+    }, { threshold: 0.5 });
+    
+    counters.forEach(counter => {
+        observer.observe(counter);
+    });
+}
+
+// Initialize AOS-like animations
+function initAOS() {
+    const elements = document.querySelectorAll('[data-aos]');
+    
+    const handleScroll = () => {
+        elements.forEach(el => {
+            const rect = el.getBoundingClientRect();
+            const isVisible = rect.top < window.innerHeight * 0.8;
+            
+            if (isVisible) {
+                const delay = el.getAttribute('data-aos-delay') || 0;
+                setTimeout(() => {
+                    el.classList.add('aos-animate');
+                }, delay);
+            }
+        });
+    };
+    
+    window.addEventListener('scroll', handleScroll);
+    handleScroll(); // Initial check
+}
+
+// scripts/voice-demo.js - Voice demo functionality
+
+function initVoiceDemo() {
+    const micButton = document.getElementById('micButton');
+    const voiceWave = document.getElementById('voiceWave');
+    const conversation = document.getElementById('conversation');
+    const languageSelect = document.getElementById('languageSelect');
+    
+    if (!micButton) return;
+    
+    let isListening = false;
+    let recognition = null;
+    
+    // Check for browser support
+    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+    
+    if (SpeechRecognition) {
+        recognition = new SpeechRecognition();
+        recognition.continuous = false;
+        recognition.interimResults = false;
+        
+        recognition.onstart = function() {
+            isListening = true;
+            micButton.classList.add('active');
+            voiceWave.classList.remove('hidden');
+            micButton.innerHTML = '<i class="fas fa-stop"></i>';
+            
+            // Add listening message
+            addMessage("Listening...", 'ai', true);
+        };
+        
+        recognition.onresult = function(event) {
+            const transcript = event.results[0][0].transcript;
+            processVoiceCommand(transcript);
+        };
+        
+        recognition.onend = function() {
+            isListening = false;
+            micButton.classList.remove('active');
+            voiceWave.classList.add('hidden');
+            micButton.innerHTML = '<i class="fas fa-microphone"></i>';
+        };
+        
+        recognition.onerror = function(event) {
+            console.error('Speech recognition error:', event.error);
+            addMessage("Sorry, I couldn't hear that. Please try again.", 'ai');
+        };
+    } else {
+        // Fallback for browsers without speech recognition
+        micButton.addEventListener('click', function() {
+            if (!isListening) {
+                isListening = true;
+                micButton.classList.add('active');
+                voiceWave.classList.remove('hidden');
+                micButton.innerHTML = '<i class="fas fa-stop"></i>';
+                addMessage("Listening... (Simulated)", 'ai', true);
+                
+                // Simulate listening for 3 seconds
+                setTimeout(() => {
+                    if (isListening) {
+                        const sampleCommands = [
+                            "Add 5 kg atta to today's sales",
+                            "What is my stock of sugar?",
+                            "Generate GST invoice for customer Rahul",
+                            "What were my sales yesterday?",
+                            "How much tea powder is left?",
+                            "Add customer Ramesh phone number 9876543210"
+                        ];
+                        const randomCommand = sampleCommands[Math.floor(Math.random() * sampleCommands.length)];
+                        processVoiceCommand(randomCommand);
+                    }
+                }, 3000);
+            } else {
+                isListening = false;
+                micButton.classList.remove('active');
+                voiceWave.classList.add('hidden');
+                micButton.innerHTML = '<i class="fas fa-microphone"></i>';
+            }
+        });
+    }
+    
+    if (recognition) {
+        micButton.addEventListener('click', function() {
+            if (!isListening) {
+                const selectedLanguage = languageSelect.value;
+                recognition.lang = getLanguageCode(selectedLanguage);
+                recognition.start();
+            } else {
+                recognition.stop();
+            }
+        });
+    }
+    
+    // Language mapping
+    function getLanguageCode(language) {
+        const languageMap = {
+            'hindi': 'hi-IN',
+            'tamil': 'ta-IN',
+            'gujarati': 'gu-IN',
+            'telugu': 'te-IN',
+            'bengali': 'bn-IN',
+            'marathi': 'mr-IN'
+        };
+        return languageMap[language] || 'en-IN';
+    }
+    
+    // Process voice command
+    function processVoiceCommand(command) {
+        // Add user message
+        addMessage(command, 'user');
+        
+        // Simulate AI response after delay
+        setTimeout(() => {
+            const response = generateAIResponse(command);
+            addMessage(response, 'ai');
+        }, 1000);
+    }
+    
+    // Generate AI response based on command
+    function generateAIResponse(command) {
+        const commandLower = command.toLowerCase();
+        
+        if (commandLower.includes('add') || commandLower.includes('sold') || commandLower.includes('bik')) {
+            const items = extractItems(command);
+            return `✓ Added ${items} to sales. Inventory updated. Would you like to generate an invoice?`;
+        }
+        
+        if (commandLower.includes('stock') || commandLower.includes('left') || commandLower.includes('bach')) {
+            const item = extractItem(command);
+            const stock = Math.floor(Math.random() * 20) + 1;
+            return `You have ${stock} ${item} in stock. ${stock < 5 ? '⚠️ Low stock! Consider reordering.' : 'Stock level is good.'}`;
+        }
+        
+        if (commandLower.includes('invoice') || commandLower.includes('bill')) {
+            return `✓ GST invoice generated successfully. You can share it via WhatsApp or download the PDF.`;
+        }
+        
+        if (commandLower.includes('sales') || commandLower.includes('profit')) {
+            const sales = Math.floor(Math.random() * 5000) + 1000;
+            const profit = Math.floor(sales * 0.3);
+            return `Yesterday's sales: ₹${sales}. Estimated profit: ₹${profit}. Top seller: Tea Powder (25 packs).`;
+        }
+        
+        if (commandLower.includes('customer') || commandLower.includes('phone')) {
+            return `✓ Customer details saved. Would you like to send them a thank you message?`;
+        }
+        
+        return "I've recorded that. Is there anything else you'd like me to help with?";
+    }
+    
+    // Helper functions
+    function extractItems(command) {
+        const quantityMatch = command.match(/\d+\s*(kg|g|ml|l|packet|bottle|piece)/i);
+        const itemMatch = command.match(/(atta|sugar|tea|rice|oil|soap|biscuit)/i);
+        
+        if (quantityMatch && itemMatch) {
+            return `${quantityMatch[0]} ${itemMatch[0]}`;
+        }
+        return "the items";
+    }
+    
+    function extractItem(command) {
+        const itemMatch = command.match(/(atta|sugar|tea|rice|oil|soap|biscuit)/i);
+        return itemMatch ? itemMatch[0] : "items";
+    }
+    
+    // Add message to conversation
+    function addMessage(text, sender, isTemporary = false) {
+        const messageDiv = document.createElement('div');
+        messageDiv.className = `message ${sender}`;
+        
+        if (sender === 'ai') {
+            messageDiv.innerHTML = `<i class="fas fa-robot"></i><p>${text}</p>`;
+        } else {
+            messageDiv.innerHTML = `<p>${text}</p>`;
+        }
+        
+        if (isTemporary) {
+            messageDiv.classList.add('temporary');
+            conversation.appendChild(messageDiv);
+            
+            // Remove temporary message after 2 seconds
+            setTimeout(() => {
+                if (messageDiv.parentNode) {
+                    messageDiv.parentNode.removeChild(messageDiv);
+                }
+            }, 2000);
+        } else {
+            conversation.appendChild(messageDiv);
+            // Scroll to bottom
+            conversation.scrollTop = conversation.scrollHeight;
+        }
+    }
+}
+
+function initSampleCommands() {
+    const commandTags = document.querySelectorAll('.command-tag');
+    
+    commandTags.forEach(tag => {
+        tag.addEventListener('click', function() {
+            const command = this.getAttribute('data-command');
+            const conversation = document.getElementById('conversation');
+            
+            // Add user message
+            const userMsg = document.createElement('div');
+            userMsg.className = 'message user';
+            userMsg.innerHTML = `<p>${command}</p>`;
+            conversation.appendChild(userMsg);
+            
+            // Simulate AI response after delay
+            setTimeout(() => {
+                const aiMsg = document.createElement('div');
+                aiMsg.className = 'message ai';
+                
+                let response = '';
+                if (command.includes('Add')) {
+                    response = "✓ Added 5 kg atta to today's sales. Inventory updated: 15 kg remaining.";
+                } else if (command.includes('Stock')) {
+                    response = "You have 8 kg of sugar in stock. Consider ordering more in 2 days.";
+                } else if (command.includes('GST')) {
+                    response = "✓ GST invoice generated for Rahul. Total: ₹525 (₹500 + ₹25 GST).";
+                } else if (command.includes('sales')) {
+                    response = "Yesterday's sales: ₹2,850. Best seller: Tea Powder (18 units).";
+                }
+                
+                aiMsg.innerHTML = `<i class="fas fa-robot"></i><p>${response}</p>`;
+                conversation.appendChild(aiMsg);
+                
+                // Scroll to bottom
+                conversation.scrollTop = conversation.scrollHeight;
+            }, 1000);
+        });
+    });
+}
+
+function initBeforeAfterEffects() {
+    // Add hover effects to comparison cards
+    const comparisonCards = document.querySelectorAll('.comparison-card');
+    
+    comparisonCards.forEach(card => {
+        card.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-10px)';
+            this.style.boxShadow = '0 20px 40px rgba(0,0,0,0.15)';
+        });
+        
+        card.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(0)';
+            this.style.boxShadow = '0 10px 30px rgba(0,0,0,0.1)';
+        });
+    });
+}
+
+// Additional animation utilities
+function animateOnScroll() {
+    const elements = document.querySelectorAll('.problem-card, .feature-card, .step');
+    
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+            }
+        });
+    }, { threshold: 0.1 });
+    
+    elements.forEach(el => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(20px)';
+        el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        observer.observe(el);
+    });
+}
+
+// Initialize when page loads
+window.addEventListener('load', function() {
+    // Trigger initial animations
+    setTimeout(() => {
+        document.querySelector('.hero-title').style.opacity = '1';
+        document.querySelector('.hero-title').style.transform = 'translateY(0)';
+    }, 300);
+    
+    animateOnScroll();
+});

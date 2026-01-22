@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Bazaar - AI Assistant for Small Shopkeepers</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/animations.css">
+    <link rel="stylesheet" href="styles/responsive.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <div class="logo">
+                    <i class="fas fa-microphone-alt"></i>
+                    <span>AI Bazaar</span>
+                </div>
+            </div>
+            <div class="nav-menu">
+                <a href="#problem">Problem</a>
+                <a href="#solution">Solution</a>
+                <a href="#how-it-works">How It Works</a>
+                <a href="#features">Features</a>
+                <a href="#demo" class="btn-outline">Try Demo</a>
+            </div>
+            <button class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-background">
+            <div class="voice-waves">
+                <div class="wave"></div>
+                <div class="wave"></div>
+                <div class="wave"></div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">
+                    <span class="highlight">Voice-First</span> AI Assistant 
+                    <br>for Indian Shopkeepers
+                </h1>
+                <p class="hero-subtitle">
+                    Speak in your local language. Manage sales, inventory, and GST invoices effortlessly.
+                    No technical skills needed.
+                </p>
+                <div class="hero-cta">
+                    <button class="btn-primary" id="tryDemoBtn">
+                        <i class="fas fa-microphone"></i> Try Voice Demo
+                    </button>
+                    <button class="btn-secondary">
+                        <i class="fas fa-play-circle"></i> See How It Works
+                    </button>
+                </div>
+                <div class="hero-stats">
+                    <div class="stat">
+                        <span class="stat-number" data-target="60">0</span>M+
+                        <span class="stat-label">Small Businesses</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number" data-target="12">0</span>+
+                        <span class="stat-label">Indian Languages</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number" data-target="70">0</span>%
+                        <span class="stat-label">Time Saved</span>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="phone-mockup">
+                    <div class="phone-screen">
+                        <div class="voice-interface">
+                            <div class="voice-input">
+                                <i class="fas fa-microphone"></i>
+                                <p>"Add 2 kg sugar to today's sales"</p>
+                            </div>
+                            <div class="voice-response">
+                                <i class="fas fa-robot"></i>
+                                <p>✓ Added 2 kg sugar. Updated inventory: 8 kg remaining.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Problem Section -->
+    <section class="problem-section" id="problem">
+        <div class="container">
+            <h2 class="section-title">The Daily Struggle of Small Shopkeepers</h2>
+            <p class="section-subtitle">Manual methods lead to errors, losses, and wasted time</p>
+            
+            <div class="problem-cards">
+                <div class="problem-card" data-aos="fade-up">
+                    <div class="problem-icon">
+                        <i class="fas fa-book"></i>
+                    </div>
+                    <h3>Paper Registers & WhatsApp Notes</h3>
+                    <p>Easy to lose, hard to search, and impossible to analyze</p>
+                    <div class="problem-stats">
+                        <span>83%</span> of shops still use paper registers
+                    </div>
+                </div>
+                
+                <div class="problem-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="problem-icon">
+                        <i class="fas fa-boxes"></i>
+                    </div>
+                    <h3>Stock Mismanagement</h3>
+                    <p>Running out of bestsellers, overstocking slow items</p>
+                    <div class="problem-stats">
+                        <span>42%</span> face weekly stock shortages
+                    </div>
+                </div>
+                
+                <div class="problem-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="problem-icon">
+                        <i class="fas fa-file-invoice"></i>
+                    </div>
+                    <h3>GST & Billing Headaches</h3>
+                    <p>Complex invoices, compliance fears, manual calculations</p>
+                    <div class="problem-stats">
+                        <span>67%</span> find GST compliance difficult
+                    </div>
+                </div>
+                
+                <div class="problem-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="problem-icon">
+                        <i class="fas fa-language"></i>
+                    </div>
+                    <h3>Language Barriers</h3>
+                    <p>English-first apps exclude regional language speakers</p>
+                    <div class="problem-stats">
+                        <span>76%</span> prefer local language interfaces
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Solution Section -->
+    <section class="solution-section" id="solution">
+        <div class="container">
+            <div class="solution-content">
+                <h2 class="section-title">AI Bazaar: Your Voice-Powered Shop Assistant</h2>
+                <p class="section-subtitle">Speak naturally in Hindi, Tamil, Gujarati, or any Indian language. AI handles the rest.</p>
+                
+                <div class="solution-features">
+                    <div class="feature">
+                        <div class="feature-icon">
+                            <i class="fas fa-microphone-alt"></i>
+                        </div>
+                        <div class="feature-text">
+                            <h3>Voice-First Interface</h3>
+                            <p>No typing, no complex menus. Just speak like you're talking to a helper.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="feature">
+                        <div class="feature-icon">
+                            <i class="fas fa-brain"></i>
+                        </div>
+                        <div class="feature-text">
+                            <h3>Smart AI Understanding</h3>
+                            <p>Understands context, remembers regular customers, predicts your needs.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="feature">
+                        <div class="feature-icon">
+                            <i class="fas fa-rupee-sign"></i>
+                        </div>
+                        <div class="feature-text">
+                            <h3>Automatic GST & Billing</h3>
+                            <p>Generates perfect GST invoices, tracks payments, manages accounts.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="feature">
+                        <div class="feature-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <div class="feature-text">
+                            <h3>Actionable Insights</h3>
+                            <p>Daily reports on profits, bestsellers, stock alerts in simple language.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="solution-visual">
+                <div class="language-bubbles">
+                    <span class="bubble hindi">हिंदी</span>
+                    <span class="bubble tamil">தமிழ்</span>
+                    <span class="bubble gujarati">ગુજરાતી</span>
+                    <span class="bubble telugu">తెలుగు</span>
+                    <span class="bubble bengali">বাংলা</span>
+                    <span class="bubble marathi">मराठी</span>
+                </div>
+                <div class="phone-visual">
+                    <div class="visual-screen">
+                        <div class="conversation">
+                            <div class="message user">"आज 5 kg आटा बिका, और 2 साबुन के पैकेट"</div>
+                            <div class="message ai">✓ Recorded: 5 kg flour, 2 soap packets. Stock updated.</div>
+                            <div class="message user">"कल के लिए क्या सुझाव है?"</div>
+                            <div class="message ai">सुझाव: 3 kg आटा कम है, 5 और पैकेट मंगवाएं। कल 10 ग्राहक आने की संभावना।</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section class="how-it-works" id="how-it-works">
+        <div class="container">
+            <h2 class="section-title">Simple 3-Step Process</h2>
+            <p class="section-subtitle">From voice to insights in seconds</p>
+            
+            <div class="steps-container">
+                <div class="step-line"></div>
+                
+                <div class="step" data-aos="fade-right">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <div class="step-icon">
+                            <i class="fas fa-comment-alt"></i>
+                        </div>
+                        <h3>Speak in Your Language</h3>
+                        <p>Just say what sold, what arrived, or ask for insights. Works on WhatsApp too.</p>
+                    </div>
+                </div>
+                
+                <div class="step" data-aos="fade-right" data-aos-delay="100">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <div class="step-icon">
+                            <i class="fas fa-cogs"></i>
+                        </div>
+                        <h3>AI Processes & Organizes</h3>
+                        <p>AI updates inventory, calculates profits, prepares invoices, and stores data securely.</p>
+                    </div>
+                </div>
+                
+                <div class="step" data-aos="fade-right" data-aos-delay="200">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <div class="step-icon">
+                            <i class="fas fa-chart-pie"></i>
+                        </div>
+                        <h3>Get Smart Insights</h3>
+                        <p>Receive alerts, reports, and recommendations to grow your business.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Voice Demo -->
+    <section class="demo-section" id="demo">
+        <div class="container">
+            <h2 class="section-title">Try It Yourself</h2>
+            <p class="section-subtitle">Click the microphone and speak a shopkeeping command</p>
+            
+            <div class="demo-container">
+                <div class="demo-interface">
+                    <div class="demo-header">
+                        <div class="demo-language-selector">
+                            <span>Language: </span>
+                            <select id="languageSelect">
+                                <option value="hindi">Hindi</option>
+                                <option value="tamil">Tamil</option>
+                                <option value="gujarati">Gujarati</option>
+                                <option value="telugu">Telugu</option>
+                                <option value="bengali">Bengali</option>
+                                <option value="marathi">Marathi</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="demo-conversation" id="conversation">
+                        <div class="message ai">
+                            <i class="fas fa-robot"></i>
+                            <p>Namaste! I'm your AI shop assistant. Try saying something like "2 kg sugar sold today" or "what's my stock of tea?"</p>
+                        </div>
+                    </div>
+                    
+                    <div class="demo-input">
+                        <div class="voice-indicator">
+                            <div class="voice-wave hidden" id="voiceWave">
+                                <div class="bar"></div>
+                                <div class="bar"></div>
+                                <div class="bar"></div>
+                                <div class="bar"></div>
+                                <div class="bar"></div>
+                            </div>
+                        </div>
+                        <button class="mic-button" id="micButton">
+                            <i class="fas fa-microphone"></i>
+                        </button>
+                        <div class="hint-text">Click and speak a shopkeeping command</div>
+                    </div>
+                    
+                    <div class="sample-commands">
+                        <span class="command-tag" data-command="Add 5 kg atta to today's sales">"Add 5 kg atta"</span>
+                        <span class="command-tag" data-command="What is my stock of sugar?">"Stock of sugar?"</span>
+                        <span class="command-tag" data-command="Generate GST invoice for customer Rahul">"GST invoice"</span>
+                        <span class="command-tag" data-command="What were my sales yesterday?">"Yesterday's sales"</span>
+                    </div>
+                </div>
+                
+                <div class="demo-explanation">
+                    <h3>How the AI Understands</h3>
+                    <div class="explanation-point">
+                        <i class="fas fa-language"></i>
+                        <div>
+                            <h4>Multilingual NLP</h4>
+                            <p>Understands 12+ Indian languages with local accents and dialects</p>
+                        </div>
+                    </div>
+                    <div class="explanation-point">
+                        <i class="fas fa-shopping-cart"></i>
+                        <div>
+                            <h4>Context Awareness</h4>
+                            <p>Remembers your products, prices, and regular customers</p>
+                        </div>
+                    </div>
+                    <div class="explanation-point">
+                        <i class="fas fa-bolt"></i>
+                        <div>
+                            <h4>Instant Processing</h4>
+                            <p>Updates inventory and accounts in real-time as you speak</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Before/After Comparison -->
+    <section class="comparison-section">
+        <div class="container">
+            <h2 class="section-title">Life Before vs After AI Bazaar</h2>
+            
+            <div class="comparison-container">
+                <div class="before-section">
+                    <h3><i class="fas fa-times-circle"></i> Before</h3>
+                    <div class="comparison-card">
+                        <div class="comparison-item">
+                            <i class="fas fa-clock"></i>
+                            <div>
+                                <h4>30+ minutes daily</h4>
+                                <p>Manual bookkeeping and calculations</p>
+                            </div>
+                        </div>
+                        <div class="comparison-item">
+                            <i class="fas fa-exclamation-triangle"></i>
+                            <div>
+                                <h4>15% error rate</h4>
+                                <p>Mistakes in pricing, stock counting</p>
+                            </div>
+                        </div>
+                        <div class="comparison-item">
+                            <i class="fas fa-chart-line"></i>
+                            <div>
+                                <h4>No insights</h4>
+                                <p>Can't track trends or predict demand</p>
+                            </div>
+                        </div>
+                        <div class="comparison-item">
+                            <i class="fas fa-file-invoice"></i>
+                            <div>
+                                <h4>GST anxiety</h4>
+                                <p>Fear of mistakes in compliance</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="after-section">
+                    <h3><i class="fas fa-check-circle"></i> After</h3>
+                    <div class="comparison-card">
+                        <div class="comparison-item">
+                            <i class="fas fa-clock"></i>
+                            <div>
+                                <h4>2 minutes daily</h4>
+                                <p>Just speak naturally, AI does the work</p>
+                            </div>
+                        </div>
+                        <div class="comparison-item">
+                            <i class="fas fa-check-double"></i>
+                            <div>
+                                <h4>Near-zero errors</h4>
+                                <p>AI ensures accurate records</p>
+                            </div>
+                        </div>
+                        <div class="comparison-item">
+                            <i class="fas fa-lightbulb"></i>
+                            <div>
+                                <h4>Smart insights</h4>
+                                <p>Daily tips to increase profits</p>
+                            </div>
+                        </div>
+                        <div class="comparison-item">
+                            <i class="fas fa-file-invoice-dollar"></i>
+                            <div>
+                                <h4>Auto-GST compliance</h4>
+                                <p>Perfect invoices, no stress</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="impact-metric">
+                <div class="metric">
+                    <span class="metric-number" data-target="85">0</span>%
+                    <span class="metric-label">Time Saved</span>
+                </div>
+                <div class="metric">
+                    <span class="metric-number" data-target="90">0</span>%
+                    <span class="metric-label">Error Reduction</span>
+                </div>
+                <div class="metric">
+                    <span class="metric-number" data-target="40">0</span>%
+                    <span class="metric-label">Profit Increase</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features-section" id="features">
+        <div class="container">
+            <h2 class="section-title">Everything You Need in One Assistant</h2>
+            
+            <div class="features-grid">
+                <div class="feature-card" data-aos="zoom-in">
+                    <div class="feature-card-icon">
+                        <i class="fas fa-cash-register"></i>
+                    </div>
+                    <h3>Voice Sales Entry</h3>
+                    <p>"2 kg sugar, 1 oil bottle sold to Ramesh" - instantly recorded</p>
+                    <div class="feature-benefit">
+                        <i class="fas fa-check"></i> No typing, no manual entry
+                    </div>
+                </div>
+                
+                <div class="feature-card" data-aos="zoom-in" data-aos-delay="50">
+                    <div class="feature-card-icon">
+                        <i class="fas fa-box-open"></i>
+                    </div>
+                    <h3>Smart Inventory</h3>
+                    <p>Auto-tracks stock, alerts before you run out, suggests reorder</p>
+                    <div class="feature-benefit">
+                        <i class="fas fa-check"></i> Never miss a sale due to stockout
+                    </div>
+                </div>
+                
+                <div class="feature-card" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="feature-card-icon">
+                        <i class="fas fa-file-invoice-dollar"></i>
+                    </div>
+                    <h3>GST-Ready Invoices</h3>
+                    <p>Professional invoices with correct GST calculations automatically</p>
+                    <div class="feature-benefit">
+                        <i class="fas fa-check"></i> 100% compliant, share via WhatsApp
+                    </div>
+                </div>
+                
+                <div class="feature-card" data-aos="zoom-in" data-aos-delay="150">
+                    <div class="feature-card-icon">
+                        <i class="fas fa-chart-bar"></i>
+                    </div>
+                    <h3>Business Insights</h3>
+                    <p>Daily profit reports, best-selling items, customer trends</p>
+                    <div class="feature-benefit">
+                        <i class="fas fa-check"></i> Make data-driven decisions easily
+                    </div>
+                </div>
+                
+                <div class="feature-card" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="feature-card-icon">
+                        <i class="fas fa-bell"></i>
+                    </div>
+                    <h3>Smart Alerts</h3>
+                    <p>Get reminders for low stock, pending payments, expiry dates</p>
+                    <div class="feature-benefit">
+                        <i class="fas fa-check"></i> Proactive business management
+                    </div>
+                </div>
+                
+                <div class="feature-card" data-aos="zoom-in" data-aos-delay="250">
+                    <div class="feature-card-icon">
+                        <i class="fas fa-whatsapp"></i>
+                    </div>
+                    <h3>WhatsApp Integration</h3>
+                    <p>Use AI Bazaar directly on WhatsApp - no new app needed</p>
+                    <div class="feature-benefit">
+                        <i class="fas fa-check"></i> Works on any smartphone
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Future Vision -->
+    <section class="future-section">
+        <div class="container">
+            <h2 class="section-title">Our Vision for Indian Shopkeepers</h2>
+            <p class="section-subtitle">Empowering 60 million small businesses with AI</p>
+            
+            <div class="roadmap">
+                <div class="roadmap-item current">
+                    <div class="roadmap-date">Now</div>
+                    <div class="roadmap-content">
+                        <h3>Voice Assistant Launch</h3>
+                        <p>Basic sales, inventory, billing in 12 languages</p>
+                    </div>
+                </div>
+                
+                <div class="roadmap-item">
+                    <div class="roadmap-date">2024</div>
+                    <div class="roadmap-content">
+                        <h3>Bill Scanning & Supplier Network</h3>
+                        <p>Scan purchase bills, connect with local suppliers</p>
+                    </div>
+                </div>
+                
+                <div class="roadmap-item">
+                    <div class="roadmap-date">2025</div>
+                    <div class="roadmap-content">
+                        <h3>Business Advisory & Loans</h3>
+                        <p>AI-powered business tips, easy loan applications</p>
+                    </div>
+                </div>
+                
+                <div class="roadmap-item">
+                    <div class="roadmap-date">2026</div>
+                    <div class="roadmap-content">
+                        <h3>Full Business Ecosystem</h3>
+                        <p>Integrated platform for all shopkeeping needs</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="vision-stats">
+                <div class="vision-stat">
+                    <i class="fas fa-store"></i>
+                    <div>
+                        <h4>60 Million Shops</h4>
+                        <p>Our target across India</p>
+                    </div>
+                </div>
+                <div class="vision-stat">
+                    <i class="fas fa-language"></i>
+                    <div>
+                        <h4>12+ Languages</h4>
+                        <p>With local dialect support</p>
+                    </div>
+                </div>
+                <div class="vision-stat">
+                    <i class="fas fa-rupee-sign"></i>
+                    <div>
+                        <h4>Affordable</h4>
+                        <p>Less than a chai per day</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Ready to Transform Your Shop?</h2>
+                <p>Join thousands of shopkeepers who are saving time, reducing errors, and growing their business with AI Bazaar</p>
+                
+                <div class="cta-buttons">
+                    <button class="btn-primary btn-large" id="finalDemoBtn">
+                        <i class="fas fa-microphone"></i> Try Free Voice Demo
+                    </button>
+                    <button class="btn-secondary btn-large">
+                        <i class="fas fa-calendar-alt"></i> Book a Personalized Demo
+                    </button>
+                </div>
+                
+                <div class="cta-footer">
+                    <div class="trust-badges">
+                        <div class="badge">
+                            <i class="fas fa-shield-alt"></i>
+                            <span>No Credit Card Required</span>
+                        </div>
+                        <div class="badge">
+                            <i class="fas fa-clock"></i>
+                            <span>Setup in 2 Minutes</span>
+                        </div>
+                        <div class="badge">
+                            <i class="fas fa-headset"></i>
+                            <span>Multilingual Support</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <div class="logo">
+                        <i class="fas fa-microphone-alt"></i>
+                        <span>AI Bazaar</span>
+                    </div>
+                    <p class="footer-tagline">Voice AI for Every Indian Shopkeeper</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-whatsapp"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-links">
+                    <div class="link-group">
+                        <h4>Product</h4>
+                        <a href="#features">Features</a>
+                        <a href="#how-it-works">How It Works</a>
+                        <a href="#demo">Live Demo</a>
+                        <a href="#">Pricing</a>
+                    </div>
+                    
+                    <div class="link-group">
+                        <h4>Resources</h4>
+                        <a href="#">Shopkeeper Stories</a>
+                        <a href="#">Help Center</a>
+                        <a href="#">Video Tutorials</a>
+                        <a href="#">Blog</a>
+                    </div>
+                    
+                    <div class="link-group">
+                        <h4>Company</h4>
+                        <a href="#">About Us</a>
+                        <a href="#">Contact</a>
+                        <a href="#">Careers</a>
+                        <a href="#">Privacy Policy</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2023 AI Bazaar. Made with ❤️ for Indian small businesses.</p>
+                <p>AI Bazaar is not affiliated with OpenAI. We use their API to power our voice assistant.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="scripts/main.js"></script>
+    <script src="scripts/animations.js"></script>
+    <script src="scripts/voice-demo.js"></script>
+</body>
+</html>
