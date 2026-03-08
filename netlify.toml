@@ -1,0 +1,10 @@
+cd C:\Users\hp\OneDrive\Desktop\Ai_bazaar
+New-Item netlify.toml -ItemType File
+Set-Content netlify.toml @"
+[build]
+  publish = "."
+  command = ""
+"@ -Encoding utf8
+git add netlify.toml
+git commit -m "Add netlify config"
+git push origin main
