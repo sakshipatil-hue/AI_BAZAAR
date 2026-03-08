@@ -2,7 +2,7 @@ const API_BASE = "https://ai-bazaar-backend-g2yb.onrender.com";
 
 document.addEventListener("DOMContentLoaded", function () {
     if (localStorage.getItem("access_token")) {
-        window.location.href = "dashboard/dashboard_index.html";
+        window.location.href = "dashboard.html";
         return;
     }
     initLoginTabs();
